@@ -80,6 +80,14 @@ public class FarmUI {
         }
     }
 
+    private void addFarm() {
+
+    }
+
+    private void addAnimal() {
+
+    }
+
     private void print(String str) {
         System.out.println(str);
     }

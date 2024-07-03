@@ -22,4 +22,9 @@ public class Input {
         }
         return input;
     }
+
+    public static String str() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
 }
