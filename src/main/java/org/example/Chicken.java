@@ -12,6 +12,6 @@ public class Chicken extends FarmAnimal{
 
     @Override
     String action() {
-        return name+" laid "+Math.round(Math.random()*10)+" eggs.";
+        return getName()+" laid "+Math.round(Math.random()*10)+" eggs.";
     }
 }

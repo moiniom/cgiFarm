@@ -9,12 +9,12 @@ public abstract class Animal {
     }
 
     //all the Variables an Animal could need
-    String name = "";  //only farm animals actually change this Value
-    int age;
-    int weight;
-    String reference;
-    String sound;
-    boolean isHungry = false;
+    private String name = "";  //only farm animals actually change this Value
+    private int age;
+    private int weight;
+    private String reference;
+    private String sound;
+    private boolean isHungry = false;
 
     //method in which the action of the animal is later implemented
     abstract String action();
@@ -37,6 +37,27 @@ public abstract class Animal {
     }
     public String[] getInfo() {
         return new String[] {reference, name, String.valueOf(age), String.valueOf(weight), String.valueOf(isHungry)};
+    }
+
+    //Getter/Setter
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public boolean isHungry() {
+        return isHungry;
+    }
+
+    public void setHungry(boolean hungry) {
+        isHungry = hungry;
     }
 }
 

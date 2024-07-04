@@ -11,6 +11,6 @@ public class Dog extends FarmAnimal{
 
     @Override
     String action() {
-        return name+" wants to play, so you throw a stick and "+name+" gets it.";
+        return getName()+" wants to play, so you throw a stick and "+getName()+" gets it.";
     }
 }

@@ -47,9 +47,9 @@ public class FarmUI {
             while (displAnimals < animalNumber) {
                 String ref;
                 if(farm.animalList[displAnimals] instanceof FarmAnimal) {
-                    ref = farm.animalList[displAnimals].name;
+                    ref = farm.animalList[displAnimals].getName();
                 } else {
-                    ref = "A "+farm.animalList[displAnimals].reference;
+                    ref = "A "+farm.animalList[displAnimals].getReference();
                 }
                 print(" "+(displAnimals+1)+" > "+ref);
                 displAnimals += 1;
@@ -66,8 +66,8 @@ public class FarmUI {
     //Menu letting the user inter act with the animals
     private void animalInteraction(Animal animal) {
         String ref;
-        if(animal.name.isEmpty()) {ref = "the "+animal.reference;}
-        else {ref = animal.name;}
+        if(animal.getName().isEmpty()) {ref = "the "+animal.getReference();}
+        else {ref = animal.getName();}
         while (true) {
             print(ref);
             print("What do you want ot do?");

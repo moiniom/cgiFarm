@@ -11,6 +11,6 @@ public class Pig extends FarmAnimal{
 
     @Override
     String action() {
-        return name+" sleeps and ignores you.";
+        return getName()+" sleeps and ignores you.";
     }
 }
