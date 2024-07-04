@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 //Class that contains a Farm Name and a list of Animals
@@ -26,6 +27,12 @@ public class Farm {
                 feedStock.put(feed, 3);
             }
         }
+    }
+
+    //method that adds Animal objects to the animalList
+    public void addAnimal(Animal animal) {
+        setAnimalList(Arrays.copyOf(getAnimalList(), getAnimalList().length + 1));
+        getAnimalList()[getAnimalList().length-1] = animal;
     }
 
     public int getMoney() {
