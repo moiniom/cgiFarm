@@ -2,7 +2,7 @@ package org.example.animal;
 
 import org.example.Feed;
 
-public class Pig extends FarmAnimal{
+public class Pig extends FarmAnimal {
     public Pig(String name, int age, int weight) {
         super(
                 name,
@@ -14,6 +14,6 @@ public class Pig extends FarmAnimal{
 
     @Override
     String action() {
-        return getName()+" sleeps and ignores you.";
+        return getName() + " sleeps and ignores you.";
     }
 }

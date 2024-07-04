@@ -7,7 +7,7 @@ public class Main {
         //Creates 2 farms
         Farm billies = new Farm(
                 "Billies Farm",
-                new Animal[] {
+                new Animal[]{
                         new Cow("Meggy", 10, 150),
                         new Chicken("Berry", 2, 2),
                         new Kangaroo(20, 100)
@@ -15,13 +15,13 @@ public class Main {
         );
         Farm mollys = new Farm(
                 "Mollys Farm",
-                new Animal[] {
+                new Animal[]{
                         new Dog("Jack", 8, 30),
                         new Pig("Jules", 10, 180)
                 }
         );
         //Creates an Array of said farms
-        Farm[] farms = new Farm[] {billies, mollys};
+        Farm[] farms = new Farm[]{billies, mollys};
         //Starts the UI and points it towards the Array
         FarmUI ui = new FarmUI(farms);
     }

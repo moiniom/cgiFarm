@@ -5,6 +5,7 @@ public class Feed {
         this.name = name;
         this.price = price;
     }
+
     public final String name;
     public final int price;
 }

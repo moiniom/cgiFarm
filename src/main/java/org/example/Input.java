@@ -11,7 +11,7 @@ public class Input {
         while (true) {
             try {
                 input = scan.nextInt();
-                if(input>=lower && input <=upper) {
+                if (input >= lower && input <= upper) {
                     break;
                 } else {
                     throw new InputMismatchException();
