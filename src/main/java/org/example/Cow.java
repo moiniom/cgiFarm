@@ -6,7 +6,8 @@ public class Cow extends FarmAnimal {
                 name,
                 "domesticated cow",
                 age, weight,
-                "Mooohh");
+                "Mooohh",
+                new Feed("Weed", 20));
     }
 
     @Override

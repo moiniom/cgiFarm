@@ -6,7 +6,8 @@ public class Pig extends FarmAnimal{
                 name,
                 "domesticated pig",
                 age, weight,
-                "Oink");
+                "Oink",
+                new Feed("Carrots", 20));
     }
 
     @Override

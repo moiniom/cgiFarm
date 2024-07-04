@@ -2,8 +2,8 @@ package org.example;
 
 //Extends Animal
 abstract class FarmAnimal extends Animal{
-    public FarmAnimal(String name, String reference, int age, int weight, String sound) {
-        super(reference,sound, age, weight);
+    public FarmAnimal(String name, String reference, int age, int weight, String sound, Feed feed) {
+        super(reference,sound, age, weight, feed);
         //Adds name
         this.setName(name);
     }

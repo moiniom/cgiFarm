@@ -5,7 +5,8 @@ public class Kangaroo extends WildAnimal{
         super(
                 "wild kangaroo",
                 "Kangaroo noises idk",
-                age, weight);
+                age, weight,
+                new Feed("Penguins", 30));
     }
 
     @Override

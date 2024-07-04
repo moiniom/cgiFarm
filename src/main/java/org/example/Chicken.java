@@ -7,7 +7,8 @@ public class Chicken extends FarmAnimal{
                 name,
                 "domesticated chicken",
                 age, weight,
-                "bawk-bawk");
+                "bawk-bawk",
+                new Feed("Seeds", 5));
     }
 
     @Override
