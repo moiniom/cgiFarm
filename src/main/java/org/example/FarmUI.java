@@ -41,7 +41,7 @@ public class FarmUI {
     private void farmInteraction(Farm farm) {
         while (true) {
             print(farm.name);
-            print("Tey have "+farm.getMoney()+" EuroDollars");
+            print("They have "+farm.getMoney()+" EuroDollars");
             int animalNumber = farm.getAnimalList().length;
             print("There live "+animalNumber+" Animals here:");
             int displAnimals = 0;
