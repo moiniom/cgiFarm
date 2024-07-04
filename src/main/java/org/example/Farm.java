@@ -1,15 +1,31 @@
 package org.example;
 
+import java.util.HashMap;
+
 //Class that contains a Farm Name and a list of Animals
 //It also has an account
 public class Farm {
     public Farm(String name, Animal[] animalList) {
         this.name = name;
         this.animalList = animalList;
+        synchStorage();
     }
     public final String name;
     private Animal[] animalList;
     private int money = 100;
+
+    private HashMap<Feed, Integer> feedStock = new HashMap<>();
+
+    public void synchStorage() {
+        int i;
+        Feed feed;
+        for (i=0; i<animalList.length; i++) {
+            feed = animalList[i].feedType;
+            if(!feedStock.containsKey(feed)) {
+                feedStock.put(feed, 3);
+            }
+        }
+    }
 
     public int getMoney() {
         return money;
