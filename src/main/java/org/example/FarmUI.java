@@ -57,9 +57,11 @@ public class FarmUI {
             }
             print(" 0 > Exit");
             print("-1 > Add new Animal");
-            int input = Input.choice(-1, animalNumber);
+            print("-2 > Add Money");
+            int input = Input.choice(-2, animalNumber);
             if(input == 0) {return;}
             if(input == -1) {addAnimal(farm);}
+            if(input == -2) {print(addMoney(farm));}
             else {animalInteraction(farm.getAnimalList()[input - 1], farm);}
         }
     }
@@ -95,6 +97,17 @@ public class FarmUI {
     private String feedAnimal(Animal animal, Farm farm) {
         if(farm.modMoney(-animal.feedType.price)) {
             return animal.feed();
+        } else {
+            return "Not enough money";
+        }
+    }
+
+    //method to add money
+    private String addMoney(Farm farm) {
+        print("Enter amount:");
+        int amount = Input.anInt();
+        if(farm.modMoney(amount)) {
+            return "Successfully added "+amount+" EUD to account";
         } else {
             return "Not enough money";
         }

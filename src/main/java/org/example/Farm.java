@@ -1,6 +1,7 @@
 package org.example;
 
 //Class that contains a Farm Name and a list of Animals
+//It also has an account
 public class Farm {
     public Farm(String name, Animal[] animalList) {
         this.name = name;
