@@ -41,15 +41,16 @@ public class FarmUI {
     private void farmInteraction(Farm farm) {
         while (true) {
             print(farm.name);
-            int animalNumber = farm.animalList.length;
+            print("Tey have "+farm.getMoney()+" EuroDollars");
+            int animalNumber = farm.getAnimalList().length;
             print("There live "+animalNumber+" Animals here:");
             int displAnimals = 0;
             while (displAnimals < animalNumber) {
                 String ref;
-                if(farm.animalList[displAnimals] instanceof FarmAnimal) {
-                    ref = farm.animalList[displAnimals].getName();
+                if(farm.getAnimalList()[displAnimals] instanceof FarmAnimal) {
+                    ref = farm.getAnimalList()[displAnimals].getName();
                 } else {
-                    ref = "A "+farm.animalList[displAnimals].getReference();
+                    ref = "A "+ farm.getAnimalList()[displAnimals].getReference();
                 }
                 print(" "+(displAnimals+1)+" > "+ref);
                 displAnimals += 1;
@@ -59,34 +60,43 @@ public class FarmUI {
             int input = Input.choice(-1, animalNumber);
             if(input == 0) {return;}
             if(input == -1) {addAnimal(farm);}
-            else {animalInteraction(farm.animalList[input - 1]);}
+            else {animalInteraction(farm.getAnimalList()[input - 1], farm);}
         }
     }
 
     //Menu letting the user inter act with the animals
-    private void animalInteraction(Animal animal) {
+    private void animalInteraction(Animal animal, Farm farm) {
         String ref;
         if(animal.getName().isEmpty()) {ref = "the "+animal.getReference();}
         else {ref = animal.getName();}
         while (true) {
             print(ref);
             print("What do you want ot do?");
-            print(" 1 > Listen to " + ref);
-            print(" 2 > Interact with " + ref);
-            print(" 3 > Feed " + ref);
-            print(" 4 > Get Info on " + ref);
+            print(" 1 > Listen to "+ref);
+            print(" 2 > Interact with "+ref);
+            print(" 3 > Feed "+ref+" with "+animal.feedType.name+"("+animal.feedType.price+" EUD)");
+            print(" 4 > Get Info on "+ref);
             print(" 0 > Exit");
             switch (Input.choice(0,4)) {
                 case 0: return;
                 case 1: print(animal.doSound()); break;
                 case 2: print(animal.doAction()); break;
-                case 3: print(animal.feed()); break;
+                case 3: print(feedAnimal(animal, farm)); break;
                 case 4: {
                     String[] info = animal.getInfo();
                     String out = info[0]+"\nName: "+info[1]+"\nAge: "+info[2]+"\nWeight: "+info[3]+"\nIs hungry: "+info[4];
                     print(out);
                 }
             }
+        }
+    }
+
+    //method to feed animal
+    private String feedAnimal(Animal animal, Farm farm) {
+        if(farm.modMoney(-animal.feedType.price)) {
+            return animal.feed();
+        } else {
+            return "Not enough money";
         }
     }
 
@@ -122,8 +132,8 @@ public class FarmUI {
             case 5: newAnimalObj = new Kangaroo(age, weight); break;
             default: print("failed"); return;
         }
-        farm.animalList = Arrays.copyOf(farm.animalList, farm.animalList.length+1);
-        farm.animalList[farm.animalList.length-1] = newAnimalObj;
+        farm.setAnimalList(Arrays.copyOf(farm.getAnimalList(), farm.getAnimalList().length + 1));
+        farm.getAnimalList()[farm.getAnimalList().length-1] = newAnimalObj;
     }
 
     private void print(String str) {
