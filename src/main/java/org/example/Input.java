@@ -22,4 +22,24 @@ public class Input {
         }
         return input;
     }
+
+    public static int anInt() {
+        Scanner scan = new Scanner(System.in);
+        int input;
+        while (true) {
+            try {
+                input = scan.nextInt();
+                break;
+            } catch (InputMismatchException exception) {
+                System.out.println("Invalid Input");
+                scan.nextLine();
+            }
+        }
+        return input;
+    }
+
+    public static String aStr() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
 }

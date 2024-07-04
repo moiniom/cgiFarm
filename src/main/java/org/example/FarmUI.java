@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class FarmUI {
     public FarmUI(Farm[] farms) {
         this.farms = farms;
@@ -15,26 +17,28 @@ public class FarmUI {
     }
 
     private void mainMenu() {
-        int farmNumber = farms.length;
         while (true) {
             print("Main Menu");
             print("There are three Farms:");
+            int farmNumber = farms.length;
             int displFarms = 0;
             while (displFarms < farmNumber) {
                 print(" "+(displFarms+1)+" > "+farms[displFarms].name);
                 displFarms += 1;
             }
             print(" 0 > Exit");
-            int input = Input.choice(0, farmNumber);
+            print("-1 > Add new Farm");
+            int input = Input.choice(-1, farmNumber);
             if(input == 0) {return;}
-            farmInteraction(farms[input-1]);
+            if(input == -1) {addFarm();}
+            else {farmInteraction(farms[input-1]);}
         }
     }
 
     private void farmInteraction(Farm farm) {
-        int animalNumber = farm.animalList.length;
         while (true) {
             print(farm.name);
+            int animalNumber = farm.animalList.length;
             print("There live "+animalNumber+" Animals here:");
             int displAnimals = 0;
             while (displAnimals < animalNumber) {
@@ -48,9 +52,11 @@ public class FarmUI {
                 displAnimals += 1;
             }
             print(" 0 > Exit");
-            int input = Input.choice(0, animalNumber);
+            print("-1 > Add new Animal");
+            int input = Input.choice(-1, animalNumber);
             if(input == 0) {return;}
-            animalInteraction(farm.animalList[input-1]);
+            if(input == -1) {addAnimal(farm);}
+            else {animalInteraction(farm.animalList[input - 1]);}
         }
     }
 
@@ -78,6 +84,40 @@ public class FarmUI {
                 }
             }
         }
+    }
+
+    private void addFarm() {
+        print("Enter name:");
+        String name = Input.aStr();
+        farms = Arrays.copyOf(farms, farms.length+1);
+        farms[farms.length-1] = new Farm(name, new Animal[] {});
+    }
+
+    private void addAnimal(Farm farm) {
+        print("Select Animal:");
+        print(" 1 > Chicken (Farm animal)");
+        print(" 2 > Cow (Farm animal)");
+        print(" 3 > Dog (Farm animal)");
+        print(" 4 > Pig (Farm animal)");
+        print(" 5 > Kangaroo (Wild animal)");
+        int clsSel = Input.choice(1,5);
+        print("Enter name if necessary:");
+        String name = Input.aStr();
+        print("Enter age:");
+        int age = Input.anInt();
+        print("Enter Weight:");
+        int weight = Input.anInt();
+        Animal newAnimalObj;
+        switch (clsSel) {
+            case 1: newAnimalObj = new Chicken(name, age, weight); break;
+            case 2: newAnimalObj = new Cow(name, age, weight); break;
+            case 3: newAnimalObj = new Dog(name, age, weight); break;
+            case 4: newAnimalObj = new Pig(name, age, weight); break;
+            case 5: newAnimalObj = new Kangaroo(age, weight); break;
+            default: print("failed"); return;
+        }
+        farm.animalList = Arrays.copyOf(farm.animalList, farm.animalList.length+1);
+        farm.animalList[farm.animalList.length-1] = newAnimalObj;
     }
 
     private void print(String str) {

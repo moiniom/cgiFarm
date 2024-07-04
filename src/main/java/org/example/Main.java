@@ -7,7 +7,7 @@ public class Main {
                 new Animal[] {
                         new Cow("Meggy", 10, 150),
                         new Chicken("Berry", 2, 2),
-                        new Kangaroo("Trixy", 20, 100)
+                        new Kangaroo(20, 100)
                 }
         );
         Farm mollys = new Farm(
