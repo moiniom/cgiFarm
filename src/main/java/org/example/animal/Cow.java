@@ -14,6 +14,6 @@ public class Cow extends FarmAnimal {
 
     @Override
     String action() {
-        return "You milk "+getName()+". They give "+(Math.round(Math.random()*10+5))+" liters of milk.";
+        return "You milk " + getName() + ". They give " + (Math.round(Math.random() * 10 + 5)) + " liters of milk.";
     }
 }
