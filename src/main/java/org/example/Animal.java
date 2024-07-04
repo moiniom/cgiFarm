@@ -1,20 +1,22 @@
 package org.example;
 
 public abstract class Animal {
-    public Animal(String reference, String sound, int age, int weight) {
+    public Animal(String reference, String sound, int age, int weight, Feed feed) {
         this.reference = reference;
         this.sound = sound;
         this.age = age;
         this.weight = weight;
+        this.feedType = feed;
     }
 
     //all the Variables an Animal could need
     private String name = "";  //only farm animals actually change this Value
-    private int age;
-    private int weight;
-    private String reference;
-    private String sound;
+    private final int age;
+    private final int weight;
+    private final String reference;
+    private final String sound;
     private boolean isHungry = false;
+    public final Feed feedType;
 
     //method in which the action of the animal is later implemented
     abstract String action();
