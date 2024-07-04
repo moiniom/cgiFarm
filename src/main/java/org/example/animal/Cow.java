@@ -1,4 +1,6 @@
-package org.example;
+package org.example.animal;
+
+import org.example.Feed;
 
 public class Cow extends FarmAnimal {
     public Cow(String name, int age, int weight) {

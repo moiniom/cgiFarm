@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.animal.Animal;
+
 import java.util.Arrays;
 import java.util.HashMap;
 

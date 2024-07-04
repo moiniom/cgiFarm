@@ -1,4 +1,6 @@
-package org.example;
+package org.example.animal;
+
+import org.example.Feed;
 
 public abstract class Animal {
     public Animal(String reference, String sound, int age, int weight, Feed feed) {

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.animal.*;
+
 public class Main {
     public static void main(String[] args) {
         //Creates 2 farms

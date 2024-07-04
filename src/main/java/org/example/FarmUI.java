@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.animal.*;
+
 import java.util.Arrays;
 
 public class FarmUI {
