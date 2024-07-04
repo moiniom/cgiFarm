@@ -1,7 +1,7 @@
 package org.example;
 
 public class Kangaroo extends WildAnimal{
-    public Kangaroo(String sound, int age, int weight) {
+    public Kangaroo(int age, int weight) {
         super(
                 "wild kangaroo",
                 "Kangaroo noises idk",
