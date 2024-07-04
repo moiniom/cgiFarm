@@ -5,17 +5,19 @@ import java.util.Arrays;
 public class FarmUI {
     public FarmUI(Farm[] farms) {
         this.farms = farms;
-        init();
+        welcome();
         mainMenu();
     }
 
     Farm[] farms;
 
-    private void init() {
+    //Welcome Message
+    private void welcome() {
         print("Hello");
         print("This is the Farm interface :-)");
     }
 
+    //Menu letting the user choose to which Farm to go or to create a new Farm
     private void mainMenu() {
         while (true) {
             print("Main Menu");
@@ -35,6 +37,7 @@ public class FarmUI {
         }
     }
 
+    //Menu letting the user chose with which animal on the Farm they want to Interact with
     private void farmInteraction(Farm farm) {
         while (true) {
             print(farm.name);
@@ -60,6 +63,7 @@ public class FarmUI {
         }
     }
 
+    //Menu letting the user inter act with the animals
     private void animalInteraction(Animal animal) {
         String ref;
         if(animal.name.isEmpty()) {ref = "the "+animal.reference;}
@@ -86,6 +90,7 @@ public class FarmUI {
         }
     }
 
+    //method to create a Farm
     private void addFarm() {
         print("Enter name:");
         String name = Input.aStr();
@@ -93,6 +98,7 @@ public class FarmUI {
         farms[farms.length-1] = new Farm(name, new Animal[] {});
     }
 
+    //Method to create a new animal
     private void addAnimal(Farm farm) {
         print("Select Animal:");
         print(" 1 > Chicken (Farm animal)");

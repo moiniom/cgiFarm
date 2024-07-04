@@ -8,17 +8,19 @@ public abstract class Animal {
         this.weight = weight;
     }
 
-    String name = "";
+    //all the Variables an Animal could need
+    String name = "";  //only farm animals actually change this Value
     int age;
     int weight;
     String reference;
     String sound;
     boolean isHungry = false;
 
+    //method in which the action of the animal is later implemented
     abstract String action();
 
+    //Methods to allow interaction
     public String doSound() {return sound;}
-
     public String doAction() {
         if(isHungry) {
             return "The "+reference+" is Hungry and thus can't do that.";
@@ -26,7 +28,6 @@ public abstract class Animal {
         isHungry = true;
         return action();
     }
-
     public String feed() {
         if(isHungry) {
             isHungry = false;
@@ -34,7 +35,6 @@ public abstract class Animal {
         }
         return "The "+reference+" isn't hungry. You can't feed them.";
     }
-
     public String[] getInfo() {
         return new String[] {reference, name, String.valueOf(age), String.valueOf(weight), String.valueOf(isHungry)};
     }
