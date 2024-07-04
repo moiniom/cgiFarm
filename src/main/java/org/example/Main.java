@@ -13,15 +13,15 @@ public class Main {
                         new Kangaroo(20, 100)
                 }
         );
-        Farm mollies = new Farm(
-                "Mollies Farm",
+        Farm mollys = new Farm(
+                "Mollys Farm",
                 new Animal[]{
                         new Dog("Jack", 8, 30),
                         new Pig("Jules", 10, 180)
                 }
         );
         //Creates an Array of said farms
-        Farm[] farms = new Farm[]{billies, mollies};
+        Farm[] farms = new Farm[]{billies, mollys};
         //Starts the UI and points it towards the Array
         FarmUI ui = new FarmUI(farms);
     }
