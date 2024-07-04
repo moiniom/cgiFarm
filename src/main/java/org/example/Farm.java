@@ -16,6 +16,7 @@ public class Farm {
 
     private HashMap<Feed, Integer> feedStock = new HashMap<>();
 
+    //method that adds all feeds to storage
     public void synchStorage() {
         int i;
         Feed feed;
