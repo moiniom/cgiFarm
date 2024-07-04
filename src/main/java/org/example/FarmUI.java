@@ -95,10 +95,10 @@ public class FarmUI {
 
     //method to feed animal
     private String feedAnimal(Animal animal, Farm farm) {
-        if(farm.modMoney(-animal.feedType.price)) {
+        if(farm.modStorage(animal.feedType, -1)) {
             return animal.feed();
         } else {
-            return "Not enough money";
+            return "Not enough feed";
         }
     }
 

@@ -29,6 +29,15 @@ public class Farm {
         }
     }
 
+    //method to change the amount of a feed in Storage
+    public boolean modStorage(Feed feed, int amount) {
+        if(feedStock.get(feed)+amount<0) {
+            return false;
+        }
+        feedStock.put(feed, feedStock.get(feed)+amount);
+        return true;
+    }
+
     //method that adds Animal objects to the animalList
     public void addAnimal(Animal animal) {
         setAnimalList(Arrays.copyOf(getAnimalList(), getAnimalList().length + 1));
