@@ -145,8 +145,7 @@ public class FarmUI {
             case 5: newAnimalObj = new Kangaroo(age, weight); break;
             default: print("failed"); return;
         }
-        farm.setAnimalList(Arrays.copyOf(farm.getAnimalList(), farm.getAnimalList().length + 1));
-        farm.getAnimalList()[farm.getAnimalList().length-1] = newAnimalObj;
+        farm.addAnimal(newAnimalObj);
     }
 
     private void print(String str) {
