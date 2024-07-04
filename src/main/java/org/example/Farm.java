@@ -29,12 +29,22 @@ public class Farm {
         }
     }
 
+    //method to get the stored amount of a feed
+    public int getFeedAmount(Feed feed) {
+        return feedStock.get(feed);
+    }
+
+    //method to get feeds in storage
+    public Feed[] getFeeds() {
+        return feedStock.keySet().toArray(Feed[]::new);
+    }
+
     //method to change the amount of a feed in Storage
     public boolean modStorage(Feed feed, int amount) {
         if(feedStock.get(feed)+amount<0) {
             return false;
         }
-        feedStock.put(feed, feedStock.get(feed)+amount);
+        feedStock.replace(feed, feedStock.get(feed)+amount);
         return true;
     }
 

@@ -58,10 +58,12 @@ public class FarmUI {
             print(" 0 > Exit");
             print("-1 > Add new Animal");
             print("-2 > Add Money");
-            int input = Input.choice(-2, animalNumber);
+            print("-3 > View feed storage/buy feed");
+            int input = Input.choice(-3, animalNumber);
             if(input == 0) {return;}
             if(input == -1) {addAnimal(farm);}
             if(input == -2) {print(addMoney(farm));}
+            if(input == -3) {storageMenu(farm);}
             else {animalInteraction(farm.getAnimalList()[input - 1], farm);}
         }
     }
@@ -76,7 +78,7 @@ public class FarmUI {
             print("What do you want ot do?");
             print(" 1 > Listen to "+ref);
             print(" 2 > Interact with "+ref);
-            print(" 3 > Feed "+ref+" with "+animal.feedType.name+"("+animal.feedType.price+" EUD)");
+            print(" 3 > Feed "+ref+" with "+animal.feedType.name+"("+farm.getFeedAmount(animal.feedType)+" ins Stock)");
             print(" 4 > Get Info on "+ref);
             print(" 0 > Exit");
             switch (Input.choice(0,4)) {
@@ -89,6 +91,26 @@ public class FarmUI {
                     String out = info[0]+"\nName: "+info[1]+"\nAge: "+info[2]+"\nWeight: "+info[3]+"\nIs hungry: "+info[4];
                     print(out);
                 }
+            }
+        }
+    }
+
+    //menu to buy feed
+    private void storageMenu(Farm farm) {
+        Feed[] feeds = farm.getFeeds();
+        while (true) {
+            print("Storage");
+            int i;
+            for (i=0; i<feeds.length; i++) {
+                print(" "+(i+1)+" > Buy "+feeds[i].name+" for "+feeds[i].price+" EUD ("+farm.getFeedAmount(feeds[i])+" remaining)");
+            }
+            print(" 0 > Exit");
+            int input = Input.choice(0, feeds.length);
+            if(input == 0) {return;}
+            if(farm.modMoney(-feeds[input-1].price)) {
+                farm.modStorage(feeds[input-1], 1);
+            } else {
+                print("Not enough money");
             }
         }
     }
