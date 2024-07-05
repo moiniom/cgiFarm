@@ -54,12 +54,7 @@ public class Farm {
 
     //method that adds Animal objects to the animalList
     public void addAnimal(Animal animal) {
-        setAnimalList(
-                Arrays.copyOf(
-                        animalList,
-                        animalList.length + 1
-                )
-        );
+        animalList = Arrays.copyOf(animalList, animalList.length + 1);
         animalList[animalList.length - 1] = animal;
     }
 
