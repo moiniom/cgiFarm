@@ -27,11 +27,10 @@ public class PigStable implements Stable{
 
     @Override
     public int feedAll() {
-        int i;
         int fedPigs = 0;
-        for(i=0; i<pigs.length; i++) {
-            if(farm.modStorage(pigs[i].feedType, -1)) {
-                System.out.println(pigs[i].feed());
+        for (Pig pig : pigs) {
+            if (farm.modStorage(pig.feedType, -1)) {
+                System.out.println(pig.feed());
                 fedPigs += 1;
             } else {
                 System.out.println("Not enough food available");
@@ -43,7 +42,7 @@ public class PigStable implements Stable{
 
     @Override
     public FarmAnimal[] getAnimals() {
-        return pigs.clone();
+        return pigs;
     }
 
     @Override

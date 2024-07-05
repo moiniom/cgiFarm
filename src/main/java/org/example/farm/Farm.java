@@ -1,7 +1,7 @@
 package org.example.farm;
 
 import org.example.Feed;
-import org.example.animal.Animal;
+import org.example.animal.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,29 +9,56 @@ import java.util.HashMap;
 //Class that contains a Farm Name and a list of Animals
 //It also has an account
 public class Farm {
-    public Farm(String name, Animal[] animalList) {
+    public Farm(String name, Animal[] animals) {
         this.name = name;
-        this.animalList = animalList;
+        this.animals = animals;
         synchStorage();
+        sortAnimals();
     }
 
     public final String name;
-    private Animal[] animalList;
+    private Animal[] animals;
+    private Stable[] stables;
     private int money = 100;
 
     private HashMap<Feed, Integer> feedStock = new HashMap<>();
 
     //method that adds all feeds to storage
-    public void synchStorage() {
+    private void synchStorage() {
         int i;
         Feed feed;
-        for (i = 0; i < animalList.length; i++) {
-            feed = animalList[i].feedType;
+        for (i = 0; i < animals.length; i++) {
+            feed = animals[i].feedType;
             if (!feedStock.containsKey(feed)) {
                 feedStock.put(feed, 3);
             }
         }
     }
+
+    //method that sorts the Farm animals into Stables
+    private void sortAnimals() {
+        Animal[] wildAnimals = new Animal[animals.length];
+        for (int i = 0; i < animals.length; i++) {
+            Animal animal = animals[i];
+            if (animal instanceof WildAnimal) {
+                wildAnimals[i] = animal;
+            } else if (animal instanceof Chicken) {
+
+            } else if (animal.getClass().equals(Cow.class)) {
+
+            } else if (animal.getClass().equals(Dog.class)) {
+
+            } else if (animal.getClass().equals(Pig.class)) {
+
+            } else {
+                throw new UnsupportedOperationException("*Somebody* needs to add an animal to sorting.");
+            }
+        }
+    }
+
+    //method to check whether a Stable exixsts
+
+    private boolean hasStable(Stable)
 
     //method to get the stored amount of a feed
     public int getFeedAmount(Feed feed) {
@@ -54,8 +81,9 @@ public class Farm {
 
     //method that adds Animal objects to the animalList
     public void addAnimal(Animal animal) {
-        animalList = Arrays.copyOf(animalList, animalList.length + 1);
-        animalList[animalList.length - 1] = animal;
+        animals = Arrays.copyOf(animals, animals.length + 1);
+        animals[animals.length - 1] = animal;
+        synchStorage();
     }
 
     public int getMoney() {
@@ -70,12 +98,12 @@ public class Farm {
         return true;
     }
 
-    public Animal[] getAnimalList() {
-        return animalList.clone();
+    public Animal[] getAnimals() {
+        return animals.clone();
     }
 
-    private void setAnimalList(Animal[] animalList) {
-        this.animalList = animalList;
+    private void setAnimals(Animal[] animals) {
+        this.animals = animals;
     }
 
 }

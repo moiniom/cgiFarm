@@ -50,15 +50,15 @@ public class FarmUI {
         while (true) {
             print(farm.name);
             print("They have " + farm.getMoney() + " EuroDollars");
-            int animalNumber = farm.getAnimalList().length;
+            int animalNumber = farm.getAnimals().length;
             print("There live " + animalNumber + " Animals here:");
             int displAnimals = 0;
             while (displAnimals < animalNumber) {
                 String ref;
-                if (farm.getAnimalList()[displAnimals] instanceof FarmAnimal) {
-                    ref = farm.getAnimalList()[displAnimals].getName();
+                if (farm.getAnimals()[displAnimals] instanceof FarmAnimal) {
+                    ref = farm.getAnimals()[displAnimals].getName();
                 } else {
-                    ref = "A " + farm.getAnimalList()[displAnimals].getReference();
+                    ref = "A " + farm.getAnimals()[displAnimals].getReference();
                 }
                 print(" " + (displAnimals + 1) + " > " + ref);
                 displAnimals += 1;
@@ -82,7 +82,7 @@ public class FarmUI {
                     storageMenu(farm);
                 }
                 default: {
-                    animalInteraction(farm.getAnimalList()[input - 1], farm);
+                    animalInteraction(farm.getAnimals()[input - 1], farm);
                 }
             }
         }
