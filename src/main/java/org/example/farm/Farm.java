@@ -1,5 +1,6 @@
-package org.example;
+package org.example.farm;
 
+import org.example.Feed;
 import org.example.animal.Animal;
 
 import java.util.Arrays;
@@ -53,8 +54,13 @@ public class Farm {
 
     //method that adds Animal objects to the animalList
     public void addAnimal(Animal animal) {
-        setAnimalList(Arrays.copyOf(getAnimalList(), getAnimalList().length + 1));
-        getAnimalList()[getAnimalList().length - 1] = animal;
+        setAnimalList(
+                Arrays.copyOf(
+                        animalList,
+                        animalList.length + 1
+                )
+        );
+        animalList[animalList.length - 1] = animal;
     }
 
     public int getMoney() {
@@ -70,10 +76,10 @@ public class Farm {
     }
 
     public Animal[] getAnimalList() {
-        return animalList;
+        return animalList.clone();
     }
 
-    public void setAnimalList(Animal[] animalList) {
+    private void setAnimalList(Animal[] animalList) {
         this.animalList = animalList;
     }
 
