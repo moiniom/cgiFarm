@@ -8,7 +8,7 @@ public class Kangaroo extends WildAnimal {
                 "wild kangaroo",
                 "Kangaroo noises idk",
                 age, weight,
-                new Feed("Penguins", 30));
+                Feed.type.PENGUIN);
     }
 
     @Override

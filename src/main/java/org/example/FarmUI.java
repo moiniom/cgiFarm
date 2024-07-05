@@ -3,16 +3,17 @@ package org.example;
 import org.example.animal.*;
 import org.example.farm.Farm;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FarmUI {
-    public FarmUI(Farm[] farms) {
+    public FarmUI(List<Farm> farms) {
         this.farms = farms;
         welcome();
         mainMenu();
     }
 
-    Farm[] farms;
+    List<Farm> farms;
 
     //Welcome Message
     private void welcome() {
@@ -25,11 +26,9 @@ public class FarmUI {
         while (true) {
             print("Main Menu");
             print("There are three Farms:");
-            int farmNumber = farms.length;
-            int displFarms = 0;
-            while (displFarms < farmNumber) {
-                print(" " + (displFarms + 1) + " > " + farms[displFarms].name);
-                displFarms += 1;
+            int farmNumber = farms.size();
+            for(int i = 0; i < farmNumber; i++) {
+                print(" " + (i + 1) + " > " + farms.get(i).name);
             }
             print(" 0 > Exit");
             print("-1 > Add new Farm");
@@ -40,7 +39,7 @@ public class FarmUI {
             if (input == -1) {
                 addFarm();
             } else {
-                farmInteraction(farms[input - 1]);
+                farmInteraction(farms.get(input-1));
             }
         }
     }
@@ -50,15 +49,15 @@ public class FarmUI {
         while (true) {
             print(farm.name);
             print("They have " + farm.getMoney() + " EuroDollars");
-            int animalNumber = farm.getAnimals().length;
+            int animalNumber = farm.getAnimals().size();
             print("There live " + animalNumber + " Animals here:");
             int displAnimals = 0;
             while (displAnimals < animalNumber) {
                 String ref;
-                if (farm.getAnimals()[displAnimals] instanceof FarmAnimal) {
-                    ref = farm.getAnimals()[displAnimals].getName();
+                if (farm.getAnimals().get(displAnimals) instanceof FarmAnimal) {
+                    ref = farm.getAnimals().get(displAnimals).getName();
                 } else {
-                    ref = "A " + farm.getAnimals()[displAnimals].getReference();
+                    ref = "A " + farm.getAnimals().get(displAnimals).getReference();
                 }
                 print(" " + (displAnimals + 1) + " > " + ref);
                 displAnimals += 1;
@@ -82,7 +81,7 @@ public class FarmUI {
                     storageMenu(farm);
                 }
                 default: {
-                    animalInteraction(farm.getAnimals()[input - 1], farm);
+                    animalInteraction(farm.getAnimals().get(input - 1), farm);
                 }
             }
         }
@@ -101,7 +100,7 @@ public class FarmUI {
             print("What do you want ot do?");
             print(" 1 > Listen to " + ref);
             print(" 2 > Interact with " + ref);
-            print(" 3 > Feed " + ref + " with " + animal.feedType.name + "(" + farm.getFeedAmount(animal.feedType) + " ins Stock)");
+            print(" 3 > Feed " + ref + " with " + Feed.getName(animal.feed) + "(" + farm.getFeedAmount(animal.feed) + " ins Stock)");
             print(" 4 > Get Info on " + ref);
             print(" 0 > Exit");
             switch (Input.choice(0, 4)) {
@@ -117,8 +116,8 @@ public class FarmUI {
                     print(feedAnimal(animal, farm));
                     break;
                 case 4: {
-                    String[] info = animal.getInfo();
-                    String out = info[0] + "\nName: " + info[1] + "\nAge: " + info[2] + "\nWeight: " + info[3] + "\nIs hungry: " + info[4];
+                    List<String> info = animal.getInfo();
+                    String out = info.get(0) + "\nName: " + info.get(1) + "\nAge: " + info.get(2) + "\nWeight: " + info.get(3) + "\nIs hungry: " + info.get(4);
                     print(out);
                 }
             }
@@ -127,20 +126,19 @@ public class FarmUI {
 
     //menu to buy feed
     private void storageMenu(Farm farm) {
-        Feed[] feeds = farm.getFeeds();
+        List<Feed.type> feeds = farm.getFeeds();
         while (true) {
             print("Storage");
-            int i;
-            for (i = 0; i < feeds.length; i++) {
-                print(" " + (i + 1) + " > Buy " + feeds[i].name + " for " + feeds[i].price + " EUD (" + farm.getFeedAmount(feeds[i]) + " remaining)");
+            for (int i = 0; i < feeds.size(); i++) {
+                print(" " + (i + 1) + " > Buy " + Feed.getName(feeds.get(i)) + " for " + Feed.getPrice(feeds.get(i)) + " EUD (" + farm.getFeedAmount(feeds.get(i)) + " remaining)");
             }
             print(" 0 > Exit");
-            int input = Input.choice(0, feeds.length);
+            int input = Input.choice(0, feeds.size());
             if (input == 0) {
                 return;
             }
-            if (farm.modMoney(-feeds[input - 1].price)) {
-                farm.modStorage(feeds[input - 1], 1);
+            if (farm.buyFeed(feeds.get(input-1))) {
+                print("bought");
             } else {
                 print("Not enough money");
             }
@@ -149,7 +147,7 @@ public class FarmUI {
 
     //method to feed animal
     private String feedAnimal(Animal animal, Farm farm) {
-        if (farm.modStorage(animal.feedType, -1)) {
+        if (farm.modStorage(animal.feed, -1)) {
             return animal.feed();
         } else {
             return "Not enough feed";
@@ -171,8 +169,7 @@ public class FarmUI {
     private void addFarm() {
         print("Enter name:");
         String name = Input.aStr();
-        farms = Arrays.copyOf(farms, farms.length + 1);
-        farms[farms.length - 1] = new Farm(name, new Animal[]{});
+        farms.add(new Farm(name, new ArrayList<>()));
     }
 
     //Method to create a new animal

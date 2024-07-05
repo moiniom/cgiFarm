@@ -29,7 +29,7 @@ public class PigStable implements Stable{
     public int feedAll() {
         int fedPigs = 0;
         for (Pig pig : pigs) {
-            if (farm.modStorage(pig.feedType, -1)) {
+            if (farm.modStorage(pig.feed, -1)) {
                 System.out.println(pig.feed());
                 fedPigs += 1;
             } else {

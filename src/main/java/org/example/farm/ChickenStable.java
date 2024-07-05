@@ -29,7 +29,7 @@ public class ChickenStable implements Stable {
     public int feedAll() {
         int fedChickens = 0;
         for (Chicken chicken : chickens) {
-            if (farm.modStorage(chicken.feedType, -1)) {
+            if (farm.modStorage(chicken.feed, -1)) {
                 System.out.println(chicken.feed());
                 fedChickens += 1;
             } else {
