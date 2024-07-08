@@ -4,20 +4,15 @@ import org.example.animal.Animal;
 import org.example.animal.Cow;
 import org.example.animal.Pig;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CowStable implements Stable{
-    public CowStable(List<Animal> cows, Farm farm) {
-        for(Animal animal : cows) {
-            if(!(animal instanceof Pig)){
-                throw new IllegalArgumentException("There can only be place for cows in a pig stable.");
-            }
-        }
-        this.cows = cows;
+    public CowStable(Farm farm) {
         this.farm = farm;
     }
 
-    private List<Animal> cows;
+    private List<Animal> cows = new ArrayList<>();
     private final Farm farm;
 
     @Override

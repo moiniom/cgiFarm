@@ -3,21 +3,16 @@ package org.example.farm;
 import org.example.animal.Animal;
 import org.example.animal.Chicken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChickenStable implements Stable {
 
-    public ChickenStable(List<Animal> chickens, Farm farm) {
-        for(Animal animal : chickens) {
-            if(!(animal instanceof Chicken)){
-                throw new IllegalArgumentException("There can only be place for chicken in a chicken stable.");
-            }
-        }
-        this.chickens = chickens;
+    public ChickenStable(Farm farm) {
         this.farm = farm;
     }
 
-    private List<Animal> chickens;
+    private List<Animal> chickens = new ArrayList<>();
     private final Farm farm;
 
     @Override

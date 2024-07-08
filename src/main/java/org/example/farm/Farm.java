@@ -12,7 +12,7 @@ public class Farm {
         this.name = name;
         this.animals = animals;
         synchStorage();
-        //sortAnimals();
+        sortAnimals();
     }
 
     public final String name;
@@ -33,25 +33,73 @@ public class Farm {
     }
 
     //method that sorts the Farm animals into Stables
-//    private void sortAnimals() {
-//        Animal[] wildAnimals = new Animal[animals.length];
-//        for (int i = 0; i < animals.length; i++) {
-//            Animal animal = animals[i];
-//            if (animal instanceof WildAnimal) {
-//                wildAnimals[i] = animal;
-//            } else if (animal instanceof Chicken) {
-//
-//            } else if (animal.getClass().equals(Cow.class)) {
-//
-//            } else if (animal.getClass().equals(Dog.class)) {
-//
-//            } else if (animal.getClass().equals(Pig.class)) {
-//
-//            } else {
-//                throw new UnsupportedOperationException("*Somebody* needs to add an animal to sorting.");
-//            }
-//        }
-//    }
+    private void sortAnimals() {
+        List<Animal> nonStableAnimals = new ArrayList<>();
+        Stable stable;
+        for(Animal animal : animals){
+            if(animal instanceof FarmAnimal) {
+                stable = getApprStable(animal);
+                stable.addAnimal(animal);
+            } else {
+                nonStableAnimals.add(animal);
+            }
+        }
+        animals = nonStableAnimals;
+    }
+
+    //This returns the appropriate Stable for an Animal. If the farm doesn't have an appropriate stable one gets created
+    public Stable getApprStable(Animal animal) {
+        enum stableType {
+            CHICKEN,
+            COW,
+            DOG,
+            PIG,
+        }
+        List<stableType> available = new ArrayList<>();
+        stableType required;
+        Stable returnStable;
+        for(Stable stable : stables){
+            if(stable instanceof ChickenStable) {
+                available.add(stableType.CHICKEN);
+            } else if (stable instanceof CowStable) {
+                available.add(stableType.COW);
+            } else if (stable instanceof DogStable) {
+                available.add(stableType.DOG);
+            } else if (stable instanceof PigStable) {
+                available.add(stableType.PIG);
+            } else {
+                throw new UnsupportedOperationException("Given Animal not implemented");
+            }
+        }
+        if(animal instanceof Chicken) {
+            required = stableType.CHICKEN;
+        } else if (animal instanceof Cow) {
+            required = stableType.COW;
+        } else if (animal instanceof Dog) {
+            required = stableType.DOG;
+        } else if (animal instanceof Pig) {
+            required = stableType.PIG;
+        } else {
+            throw new UnsupportedOperationException("Given Animal not implemented");
+        }
+        if(!available.contains(required)) {
+            if(required == stableType.CHICKEN) {
+                returnStable = new ChickenStable(this);
+            } else if (required == stableType.COW) {
+                returnStable = new CowStable(this);
+            } else if (required == stableType.DOG) {
+                returnStable = new DogStable(this);
+            } else if (required == stableType.PIG) {
+                returnStable = new PigStable(this);
+            } else {
+                throw new UnsupportedOperationException("Given Animal not implemented");
+            }
+            stables.add(returnStable);
+        } else {
+            returnStable = stables.get(available.indexOf(required));
+        }
+        return returnStable;
+    }
 
     //method to change the amount of a feed in Storage
     public boolean modStorage(Feed.type feed, int amount) {
@@ -62,8 +110,9 @@ public class Farm {
         return true;
     }
 
+    //Buys Feed adding one of the given Feed to Storage and subtracting the given price from the account
     public boolean buyFeed(Feed.type feed) {
-        if(modMoney(Feed.getPrice(feed))) {
+        if(modMoney(-Feed.getPrice(feed))) {
             modStorage(feed, 1);
             return true;
         } else {
