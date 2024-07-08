@@ -128,7 +128,7 @@ public class FarmUI {
                     return;
                 } case -1: {
                     int fed = stable.feedAll();
-                    print(fed + " out of " + stable.getAnimalNum() + " animals fed.");
+                    print(fed + " out of " + stable.getAnimalNum() + " animals were fed.");
                     break;
                 } default: {
                     animalInteraction(stable.getAnimals().get(input - 1), farm);
