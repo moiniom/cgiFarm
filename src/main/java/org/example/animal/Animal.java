@@ -40,11 +40,8 @@ public abstract class Animal {
     }
 
     public String feed() {
-        if (isHungry) {
-            isHungry = false;
-            return "You feed the " + reference + ".\nThey aren't hungry anymore";
-        }
-        return "The " + reference + " isn't hungry. You can't feed them.";
+        isHungry = false;
+        return "You feed the " + reference + ".\nThey aren't hungry anymore";
     }
 
     public List<String> getInfo() {

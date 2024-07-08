@@ -197,10 +197,14 @@ public class FarmUI {
 
     //method to feed animal
     private String feedAnimal(Animal animal, Farm farm) {
-        if (farm.modStorage(animal.feed, -1)) {
-            return animal.feed();
+        if(animal.isHungry()) {
+            if (farm.modStorage(animal.feed, -1)) {
+                return animal.feed();
+            } else {
+                return "Not enough feed";
+            }
         } else {
-            return "Not enough feed";
+            return "They aren't hungry thus you can't do this right now.";
         }
     }
 

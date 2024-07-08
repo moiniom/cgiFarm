@@ -26,13 +26,17 @@ public class PigStable implements Stable{
     @Override
     public int feedAll() {
         int fedPigs = 0;
-        for (Animal pig : pigs) {
-            if (farm.modStorage(pig.feed, -1)) {
-                System.out.println(pig.feed());
-                fedPigs += 1;
+        for (Animal animal : pigs) {
+            if(animal.isHungry()){
+                if (farm.modStorage(animal.feed, -1)) {
+                    System.out.println(animal.feed());
+                    fedPigs += 1;
+                } else {
+                    System.out.println("Not enough food available");
+                    break;
+                }
             } else {
-                System.out.println("Not enough food available");
-                break;
+                System.out.println(animal.getName()+" isn't hungry. You can't feed them right now.");
             }
         }
         return fedPigs;

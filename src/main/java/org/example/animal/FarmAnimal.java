@@ -23,10 +23,7 @@ public abstract class FarmAnimal extends Animal {
     //Changes the feed text
     @Override
     public String feed() {
-        if (isHungry()) {
-            setHungry(false);
-            return "You feed " + getName() + ".\nThey aren't hungry anymore.";
-        }
-        return getName() + " isn't hungry. You can't feed them.";
+        setHungry(false);
+        return "You feed " + getName() + ".\nThey aren't hungry anymore.";
     }
 }
