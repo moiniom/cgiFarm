@@ -2,18 +2,22 @@ package org.example.farm;
 
 import org.example.animal.Animal;
 import org.example.animal.Chicken;
-import org.example.animal.FarmAnimal;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class ChickenStable implements Stable {
 
-    public ChickenStable(Chicken[] chickens, Farm farm) {
+    public ChickenStable(List<Animal> chickens, Farm farm) {
+        for(Animal animal : chickens) {
+            if(!(animal instanceof Chicken)){
+                throw new IllegalArgumentException("There can only be place for chicken in a chicken stable.");
+            }
+        }
         this.chickens = chickens;
         this.farm = farm;
     }
 
-    private Chicken[] chickens;
+    private List<Animal> chickens;
     private final Farm farm;
 
     @Override
@@ -21,14 +25,13 @@ public class ChickenStable implements Stable {
         if(!(animal instanceof Chicken)) {
             throw new IllegalArgumentException("Tried adding non Pig to PigStable");
         }
-        chickens = Arrays.copyOf(chickens, chickens.length+1);
-        chickens[chickens.length-1] = (Chicken) animal;
+        chickens.add(animal);
     }
 
     @Override
     public int feedAll() {
         int fedChickens = 0;
-        for (Chicken chicken : chickens) {
+        for (Animal chicken : chickens) {
             if (farm.modStorage(chicken.feed, -1)) {
                 System.out.println(chicken.feed());
                 fedChickens += 1;
@@ -41,13 +44,13 @@ public class ChickenStable implements Stable {
     }
 
     @Override
-    public FarmAnimal[] getAnimals() {
+    public List<Animal> getAnimals() {
         return chickens;
     }
 
     @Override
     public int getAnimalNum() {
-        return chickens.length;
+        return chickens.size();
     }
 
 }

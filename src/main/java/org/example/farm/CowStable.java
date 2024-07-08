@@ -1,55 +1,55 @@
 package org.example.farm;
 
 import org.example.animal.Animal;
+import org.example.animal.Cow;
 import org.example.animal.Pig;
 
 import java.util.List;
 
-public class PigStable implements Stable{
-
-    public PigStable(List<Animal> pigs, Farm farm) {
-        for(Animal animal : pigs) {
+public class CowStable implements Stable{
+    public CowStable(List<Animal> cows, Farm farm) {
+        for(Animal animal : cows) {
             if(!(animal instanceof Pig)){
-                throw new IllegalArgumentException("There can only be place for pigs in a pig stable.");
+                throw new IllegalArgumentException("There can only be place for cows in a pig stable.");
             }
         }
-        this.pigs = pigs;
+        this.cows = cows;
         this.farm = farm;
     }
 
-    private List<Animal> pigs;
+    private List<Animal> cows;
     private final Farm farm;
 
     @Override
     public void addAnimal(Animal animal) {
-        if(!(animal instanceof Pig)) {
-            throw new IllegalArgumentException("Tried adding non Pig to PigStable");
+        if(!(animal instanceof Cow)) {
+            throw new IllegalArgumentException("Tried adding non Cow to PigStable");
         }
-        pigs.add(animal);
+        cows.add(animal);
     }
 
     @Override
     public int feedAll() {
-        int fedPigs = 0;
-        for (Animal pig : pigs) {
+        int fedCows = 0;
+        for (Animal pig : cows) {
             if (farm.modStorage(pig.feed, -1)) {
                 System.out.println(pig.feed());
-                fedPigs += 1;
+                fedCows += 1;
             } else {
                 System.out.println("Not enough food available");
                 break;
             }
         }
-        return fedPigs;
+        return fedCows;
     }
 
     @Override
     public List<Animal> getAnimals() {
-        return pigs;
+        return cows;
     }
 
     @Override
     public int getAnimalNum() {
-        return pigs.size();
+        return cows.size();
     }
 }

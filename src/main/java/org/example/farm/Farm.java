@@ -24,10 +24,8 @@ public class Farm {
 
     //method that adds all feeds to storage
     private void synchStorage() {
-        int i;
-        Feed.type feed;
         for(Animal animal : animals) {
-            feed = animal.feed;
+            Feed.type feed = animal.feed;
             if (!feedStock.containsKey(feed)) {
                 feedStock.put(feed, 3);
             }
@@ -54,16 +52,6 @@ public class Farm {
 //            }
 //        }
 //    }
-
-    //method to get the stored amount of a feed
-    public int getFeedAmount(Feed.type feed) {
-        return feedStock.get(feed);
-    }
-
-    //method to get feeds in storage
-    public List<Feed.type> getFeeds() {
-        return feedStock.keySet().stream().toList();
-    }
 
     //method to change the amount of a feed in Storage
     public boolean modStorage(Feed.type feed, int amount) {
@@ -99,8 +87,21 @@ public class Farm {
         money += change;
         return true;
     }
+    //method to get the stored amount of a feed
+    public int getFeedAmount(Feed.type feed) {
+        return feedStock.get(feed);
+    }
+
+    //method to get feeds in storage
+    public List<Feed.type> getFeeds() {
+        return feedStock.keySet().stream().toList();
+    }
 
     public List<Animal> getAnimals() {
         return animals;
+    }
+
+    public List<Stable> getStables() {
+        return stables;
     }
 }
