@@ -9,7 +9,7 @@ public class Dog extends FarmAnimal {
                 "domesticated dog",
                 age, weight,
                 "Bark-Bark",
-                new Feed("Steaks", 10));
+                Feed.type.STEAK);
     }
 
     @Override

@@ -2,13 +2,16 @@ package org.example.animal;
 
 import org.example.Feed;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Animal {
-    public Animal(String reference, String sound, int age, int weight, Feed feed) {
+    public Animal(String reference, String sound, int age, int weight, Feed.type feed) {
         this.reference = reference;
         this.sound = sound;
         this.age = age;
         this.weight = weight;
-        this.feedType = feed;
+        this.feed = feed;
     }
 
     //all the Variables an Animal could need
@@ -18,7 +21,7 @@ public abstract class Animal {
     private final String reference;
     private final String sound;
     private boolean isHungry = false;
-    public final Feed feedType;
+    public final Feed.type feed;
 
     //method in which the action of the animal is later implemented
     abstract String action();
@@ -44,8 +47,14 @@ public abstract class Animal {
         return "The " + reference + " isn't hungry. You can't feed them.";
     }
 
-    public String[] getInfo() {
-        return new String[]{reference, name, String.valueOf(age), String.valueOf(weight), String.valueOf(isHungry)};
+    public List<String> getInfo() {
+        List<String> info = new ArrayList<>(); //{reference, name, String.valueOf(age), String.valueOf(weight), String.valueOf(isHungry)};
+        info.add(reference);
+        info.add(name);
+        info.add(String.valueOf(age));
+        info.add(String.valueOf(weight));
+        info.add(String.valueOf(isHungry));
+        return info;
     }
 
     //Getter/Setter

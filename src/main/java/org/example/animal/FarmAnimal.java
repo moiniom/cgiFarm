@@ -4,7 +4,7 @@ import org.example.Feed;
 
 //Extends Animal
 public abstract class FarmAnimal extends Animal {
-    public FarmAnimal(String name, String reference, int age, int weight, String sound, Feed feed) {
+    public FarmAnimal(String name, String reference, int age, int weight, String sound, Feed.type feed) {
         super(reference, sound, age, weight, feed);
         //Adds name
         this.setName(name);

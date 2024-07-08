@@ -1,11 +1,40 @@
 package org.example;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Feed {
-    public Feed(String name, int price) {
-        this.name = name;
-        this.price = price;
+    public enum type {
+        SEEDS,
+        WHEAT,
+        STEAK,
+        CARROT,
+        PENGUIN
     }
 
-    public final String name;
-    public final int price;
+    private static final HashMap<type, Integer> price = new HashMap<>();
+    static {
+        price.put(type.SEEDS, 10);
+        price.put(type.WHEAT, 20);
+        price.put(type.STEAK, 30);
+        price.put(type.CARROT, 20);
+        price.put(type.PENGUIN, 40);
+    }
+
+    private static final HashMap<type, String> name = new HashMap<>();
+    static {
+        name.put(type.SEEDS, "seeds");
+        name.put(type.WHEAT, "wheat");
+        name.put(type.STEAK, "steak");
+        name.put(type.CARROT, "carrot");
+        name.put(type.PENGUIN, "penguin");
+    }
+
+    public static int getPrice(type type) {
+        return price.get(type);
+    }
+
+    public static String getName(type type) {
+        return name.get(type);
+    }
 }

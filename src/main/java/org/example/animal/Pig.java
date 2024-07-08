@@ -9,7 +9,7 @@ public class Pig extends FarmAnimal {
                 "domesticated pig",
                 age, weight,
                 "Oink",
-                new Feed("Carrots", 20));
+                Feed.type.CARROT);
     }
 
     @Override

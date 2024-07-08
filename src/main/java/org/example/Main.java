@@ -1,27 +1,35 @@
 package org.example;
 
 import org.example.animal.*;
+import org.example.farm.Farm;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         //Creates 2 farms
+        List<Animal> billiesAnimals = new ArrayList<>();
+        billiesAnimals.add(new Cow("Meggy", 10, 150));
+        billiesAnimals.add(new Chicken("Berry", 2, 2));
+        billiesAnimals.add(new Kangaroo(20, 100));
         Farm billies = new Farm(
                 "Billies Farm",
-                new Animal[]{
-                        new Cow("Meggy", 10, 150),
-                        new Chicken("Berry", 2, 2),
-                        new Kangaroo(20, 100)
-                }
+                billiesAnimals
         );
+
+        List<Animal> keinBockMehr = new ArrayList<>();
+        keinBockMehr.add(new Dog("Jack", 8, 30));
+        keinBockMehr.add(new Pig("Jules", 10, 180));
         Farm mollies = new Farm(
                 "Mollies Farm",
-                new Animal[]{
-                        new Dog("Jack", 8, 30),
-                        new Pig("Jules", 10, 180)
-                }
+                keinBockMehr
         );
+
         //Creates an Array of said farms
-        Farm[] farms = new Farm[]{billies, mollies};
+        List<Farm> farms = new ArrayList<>();
+        farms.add(billies);
+        farms.add(mollies);
         //Starts the UI and points it towards the Array
         FarmUI ui = new FarmUI(farms);
     }
