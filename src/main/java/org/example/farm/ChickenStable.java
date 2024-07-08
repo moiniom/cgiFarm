@@ -48,4 +48,8 @@ public class ChickenStable implements Stable {
         return chickens.size();
     }
 
+    public String getName(){
+        return "chicken stable";
+    }
+
 }

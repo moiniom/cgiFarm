@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.animal.*;
 import org.example.farm.Farm;
+import org.example.farm.Stable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,24 +50,32 @@ public class FarmUI {
         while (true) {
             print(farm.name);
             print("They have " + farm.getMoney() + " EuroDollars");
-            int animalNumber = farm.getAnimals().size();
+            int animalNumber = farm.getNonStableAnimals().size();
+            for(Stable stable : farm.getStables()) {
+                animalNumber += stable.getAnimalNum();
+            }
             print("There live " + animalNumber + " Animals here:");
-            int displAnimals = 0;
-            while (displAnimals < animalNumber) {
-                String ref;
-                if (farm.getAnimals().get(displAnimals) instanceof FarmAnimal) {
-                    ref = farm.getAnimals().get(displAnimals).getName();
+            int displOptions = 0;
+            String ref;
+            while (displOptions < farm.getStables().size()) {
+                ref = "Go to " + farm.getStables().get(displOptions).getName();
+                print(" " + (displOptions +1) + " > " + ref);
+                displOptions += 1;
+            }
+            while (displOptions < farm.getStables().size()+farm.getNonStableAnimals().size()) {
+                if (farm.getNonStableAnimals().get(displOptions-farm.getStables().size()) instanceof FarmAnimal) {
+                    ref = farm.getNonStableAnimals().get(displOptions-farm.getStables().size()).getName();
                 } else {
-                    ref = "A " + farm.getAnimals().get(displAnimals).getReference();
+                    ref = "Go to " + farm.getNonStableAnimals().get(displOptions-farm.getStables().size()).getReference();
                 }
-                print(" " + (displAnimals + 1) + " > " + ref);
-                displAnimals += 1;
+                print(" " + (displOptions + 1) + " > " + ref);
+                displOptions += 1;
             }
             print(" 0 > Exit");
             print("-1 > Add new Animal");
             print("-2 > Add Money");
             print("-3 > View feed storage/buy feed");
-            int input = Input.choice(-3, animalNumber);
+            int input = Input.choice(-3, displOptions);
             switch (input) {
                 case 0: {
                     return;
@@ -84,8 +93,45 @@ public class FarmUI {
                     break;
                 }
                 default: {
-                    animalInteraction(farm.getAnimals().get(input - 1), farm);
+                    if(input > farm.getStables().size()) {
+                        animalInteraction(farm.getNonStableAnimals().get(input - 1 -farm.getStables().size()), farm);
+                    } else {
+                        stableInteraction(farm.getStables().get(input - 1), farm);
+                    }
                     break;
+                }
+            }
+        }
+    }
+
+    //Menu letting the user interact with the Stable
+    private void stableInteraction(Stable stable, Farm farm) {
+        while (true) {
+            print(stable.getName());
+            print("There are " + stable.getAnimalNum() + " Animals in this Stable:");
+            int displOptions = 0;
+            String ref;
+            while (displOptions < stable.getAnimalNum()) {
+                if(stable.getAnimals().get(displOptions) instanceof FarmAnimal) {
+                    ref = stable.getAnimals().get(displOptions).getName();
+                } else {
+                    ref = stable.getAnimals().get(displOptions).getReference();
+                }
+                print(" " + (displOptions + 1) + " > " + ref);
+                displOptions += 1;
+            }
+            print(" 0 > Exit");
+            print("-1 > Feed all");
+            int input = Input.choice(-1, displOptions);
+            switch (input) {
+                case 0: {
+                    return;
+                } case -1: {
+                    int fed = stable.feedAll();
+                    print(fed + " out of " + stable.getAnimalNum() + " animals fed.");
+                    break;
+                } default: {
+                    animalInteraction(stable.getAnimals().get(input - 1), farm);
                 }
             }
         }

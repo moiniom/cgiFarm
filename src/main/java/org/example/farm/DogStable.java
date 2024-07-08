@@ -46,4 +46,8 @@ public class DogStable implements Stable{
     public int getAnimalNum() {
         return dogs.size();
     }
+
+    public String getName(){
+        return "dog stable";
+    }
 }

@@ -13,4 +13,6 @@ public interface Stable {
     List<Animal> getAnimals();
     //method returning the number of animals in the Stable
     int getAnimalNum();
+    //reference of Stable
+    String getName();
 }

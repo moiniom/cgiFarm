@@ -47,4 +47,8 @@ public class PigStable implements Stable{
     public int getAnimalNum() {
         return pigs.size();
     }
+
+    public String getName(){
+        return "pig stable";
+    }
 }

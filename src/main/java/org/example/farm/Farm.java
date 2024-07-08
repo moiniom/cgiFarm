@@ -17,7 +17,7 @@ public class Farm {
 
     public final String name;
     private List<Animal> animals;
-    private List<Stable> stables;
+    private List<Stable> stables = new ArrayList<>();
     private int money = 100;
 
     private HashMap<Feed.type, Integer> feedStock = new HashMap<>();
@@ -33,7 +33,7 @@ public class Farm {
     }
 
     //method that sorts the Farm animals into Stables
-    private void sortAnimals() {
+    public void sortAnimals() {
         List<Animal> nonStableAnimals = new ArrayList<>();
         Stable stable;
         for(Animal animal : animals){
@@ -48,7 +48,7 @@ public class Farm {
     }
 
     //This returns the appropriate Stable for an Animal. If the farm doesn't have an appropriate stable one gets created
-    public Stable getApprStable(Animal animal) {
+    private Stable getApprStable(Animal animal) {
         enum stableType {
             CHICKEN,
             COW,
@@ -123,6 +123,7 @@ public class Farm {
     //method that adds Animal objects to the animalList
     public void addAnimal(Animal animal) {
         animals.add(animal);
+        sortAnimals();
     }
 
     public int getMoney() {
@@ -146,7 +147,7 @@ public class Farm {
         return feedStock.keySet().stream().toList();
     }
 
-    public List<Animal> getAnimals() {
+    public List<Animal> getNonStableAnimals() {
         return animals;
     }
 
