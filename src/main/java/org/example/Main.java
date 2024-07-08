@@ -26,11 +26,11 @@ public class Main {
                 keinBockMehr
         );
 
-        //Creates an Array of said farms
+        //Creates a List of said farms
         List<Farm> farms = new ArrayList<>();
         farms.add(billies);
         farms.add(mollies);
-        //Starts the UI and points it towards the Array
+        //Starts the UI and points it towards the List
         FarmUI ui = new FarmUI(farms);
     }
 }
