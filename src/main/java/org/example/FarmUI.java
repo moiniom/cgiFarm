@@ -73,15 +73,19 @@ public class FarmUI {
                 }
                 case -1: {
                     addAnimal(farm);
+                    break;
                 }
                 case -2: {
                     print(addMoney(farm));
+                    break;
                 }
                 case -3: {
                     storageMenu(farm);
+                    break;
                 }
                 default: {
                     animalInteraction(farm.getAnimals().get(input - 1), farm);
+                    break;
                 }
             }
         }
