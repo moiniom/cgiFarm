@@ -17,7 +17,7 @@ public class Farm {
 
     public final String name;
     private List<Animal> animals;
-    private Stable[] stables;
+    private List<Stable> stables;
     private int money = 100;
 
     private HashMap<Feed.type, Integer> feedStock = new HashMap<>();
