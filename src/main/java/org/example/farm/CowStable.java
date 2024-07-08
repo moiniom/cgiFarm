@@ -2,7 +2,6 @@ package org.example.farm;
 
 import org.example.animal.Animal;
 import org.example.animal.Cow;
-import org.example.animal.Pig;
 
 import java.util.ArrayList;
 import java.util.List;
