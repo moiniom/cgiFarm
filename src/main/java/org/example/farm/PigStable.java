@@ -12,7 +12,7 @@ public class PigStable implements Stable{
         this.farm = farm;
     }
 
-    private List<Animal> pigs = new ArrayList<>();
+    private final List<Animal> pigs = new ArrayList<>();
     private final Farm farm;
 
     @Override
