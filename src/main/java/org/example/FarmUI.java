@@ -150,7 +150,7 @@ public class FarmUI {
             print("What do you want ot do?");
             print(" 1 > Listen to " + ref);
             print(" 2 > Interact with " + ref);
-            print(" 3 > Feed " + ref + " with " + Feed.getName(animal.feed) + "(" + farm.getFeedAmount(animal.feed) + " in Stock)");
+            print(" 3 > Feed " + ref + " with " + Feed.getName(animal.feed) + " (" + farm.getFeedAmount(animal.feed) + " in Stock)");
             print(" 4 > Get Info on " + ref);
             print(" 0 > Exit");
             switch (Input.choice(0, 4)) {
