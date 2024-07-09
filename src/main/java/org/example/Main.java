@@ -18,12 +18,12 @@ public class Main {
                 billiesAnimals
         );
 
-        List<Animal> keinBockMehr = new ArrayList<>();
-        keinBockMehr.add(new Dog("Jack", 8, 30));
-        keinBockMehr.add(new Pig("Jules", 10, 180));
+        List<Animal> molliesAnimals = new ArrayList<>();
+        molliesAnimals.add(new Dog("Jack", 8, 30));
+        molliesAnimals.add(new Pig("Jules", 10, 180));
         Farm mollies = new Farm(
                 "Mollies Farm",
-                keinBockMehr
+                molliesAnimals
         );
 
         //Creates a List of said farms
